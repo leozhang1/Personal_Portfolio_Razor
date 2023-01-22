@@ -1,0 +1,24 @@
+﻿@page
+@model Personal_Portfolio_Razor.Pages.SkillsModel
+@{
+}
+<h2>Programming Languages</h2>
+    <hr/>
+    <ul>
+        <li v-for="(programmingLanguage, idx) in programmingLanguages" :key="idx"> {{programmingLanguage}}</li>
+    </ul>
+    <h2 class="skillsSubHeader">Technology & Frameworks I Use</h2>
+    <hr/>
+    <ul>
+        <li v-for="(t, idx) in ts" :key="idx"> {{t}}</li>
+    </ul>
+    <h2 class="skillsSubHeader">Python Libraries I Use</h2>
+    <hr/>
+    <ul>
+        <li v-for="(pl, idx) in pls" :key="idx"> {{pl}}</li>
+    </ul>
+    <h2 class="skillsSubHeader">The Linux Distribution That I Use & The Tools That I Frequently Work With</h2>
+    <hr/>
+    <ul>
+        <li v-for="(lt, idx) in lts" :key="idx"> {{lt}}</li>
+    </ul>

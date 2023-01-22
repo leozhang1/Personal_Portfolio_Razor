@@ -1,0 +1,23 @@
+﻿@page
+@model Personal_Portfolio_Razor.Pages.BlogsModel
+@{
+}
+<div class="text-center">
+        <h2>All Blogs</h2>
+    </div>
+    <hr/>
+    <div class="text-center">
+        <button type="button" class="btn btn-dark">Sorted by {{isNewest ? "Newest" : "Oldest"}}</button>
+    </div>
+    <div class="card mx-auto mt-3 w-75" v-for="(b, idx) in bc" :key="idx">
+        <div class="card-body">
+            <router-link
+            class="card-link"
+            :to="{ name: b.routeName, }"
+            >
+                {{b.title}}
+            </router-link>
+            <h5 class="card-title">{{b.date}}</h5>
+            <p class="card-text">{{b.previewDesc}}</p>
+        </div>
+    </div>
