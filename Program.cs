@@ -1,7 +1,24 @@
+using Microsoft.EntityFrameworkCore;
+using Personal_Portfolio_Razor.Data;
+using Personal_Portfolio_Razor.Models;
+using Personal_Portfolio_Razor.Services;
+// dotnet tool install --global dotnet-ef
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<ISkillsDataRepository<string>, SkillsDataRepository>();
+builder.Services.AddSingleton<IProjectsDataRepository<ProjectCardModel>, ProjectsDataRepository>();
+builder.Services.AddSingleton<IBlogsDataRepository<BlogModel>, BlogsDataRepository>();
+
+builder.Services.AddDbContext<ApplicationDbContext>(
+    options => options.UseSqlServer(
+        builder.Configuration.GetConnectionString("sqlServerString")
+    )
+);
+
+
 
 var app = builder.Build();
 

@@ -19,20 +19,26 @@
         <div class="col-6">
             <label for="input1" class="form-label">Name</label>
             <input type="text" class="form-control" id="input1" asp-for="contactMeModel.name" placeholder="Name" required>
+            <span asp-validation-for="contactMeModel.name" class="text-danger"></span>
         </div>
         <div class="col-6">
             <label for="input2" class="form-label">Email</label>
                 <input type="email" class="form-control" id="input2" aria-describedby="emailHelp" asp-for="contactMeModel.email" placeholder="Email" required>
+                <span asp-validation-for="contactMeModel.email" class="text-danger"></span>
+
                 <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
         </div>
     </div>
     <div class="mb-3 w-75 mx-auto">
         <label for="input3" class="form-label">Subject</label>
         <input type="text" class="form-control" id="input3" asp-for="contactMeModel.subject" placeholder="Subject" required>
+        <span asp-validation-for="contactMeModel.subject" class="text-danger"></span>
+
     </div>
     <div class="form-outline mb-5 w-75 mx-auto">
         <label class="form-label" for="textAreaContact">Message</label>
         <textarea class="form-control" id="textAreaContact" rows="7" asp-for="contactMeModel.message" placeholder="Message" required></textarea>
+        <span asp-validation-for="contactMeModel.message" class="text-danger"></span>
     </div>
     <div class="w-75 mx-auto">
         <button type="submit" class="btn btn-primary">Submit</button>

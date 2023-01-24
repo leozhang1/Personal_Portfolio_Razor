@@ -2,33 +2,51 @@
 @model Personal_Portfolio_Razor.Pages.ProjectsModel
 @{
 }
+
 <div class="container">
-        <div class="row pt-5">
-            <div class="text-center col-12">
-                <h3 class="text-uppercase border-bottom mb-4">List of projects</h3>
-            </div>
+    <div class="row pt-5">
+        <div class="text-center col-12">
+            <h3 class="text-uppercase border-bottom mb-4">List of projects</h3>
         </div>
-        <div class="input-group mb-3">
-            <input type="text" placeholder="Search project by title" aria-label="SearchProject" v-model="search">
+    </div>
+    @* <div class="input-group mb-3">
+
+        <input type="text" placeholder="Search project by title" aria-label="SearchProject" asp-for="searchTerm" />
+
+        <div class="input-group-append">
+            <span class="input-group-text">
+                <i class="fa fa-magnifying-glass"></i>
+            </span>
+        </div>
+    </div> *@
+
+
+    <form method="get">
+        <div class="input-group">
+            <input class="form-control" asp-for="searchTerm">
             <div class="input-group-append">
-                <span class="input-group-text">
-                    <fa icon="fa-solid fa-magnifying-glass" />
-                </span>
+                <button class="btn btn-primary" type="submit">Search</button>
             </div>
         </div>
-        <div class="row g-3">
-            <div class="col-12 col-md-6 col-lg-6 col-sm-6" v-for="(info, idx) in filteredProjects" :key="idx">
+    </form>
+
+
+    <div class="row g-3">
+        @foreach (var info in Model.projects)
+        {
+            <div class="col-12 col-md-6 col-lg-6 col-sm-6">
                 <div class="card">
-                    <img :src="info.imgUrl" class="card-img-top" alt="Card Image">
+                    <img src="@info.imgUrl" class="card-img-top" alt="Card Image" />
                     <div class="card-body">
-                        <h5 class="card-title text-center">{{info.title}}</h5>
-                        <p class="card-text mb-4">{{info.description}}</p>
+                        <h5 class="card-title text-center">@info.title</h5>
+                        <p class="card-text mb-4">@info.description</p>
                         <div class="text-center">
-                            <a class="card-link btn btn-primary" target="_blank" rel="noopener noreferrer" :href="info.gameLink" >Link to game</a>
-                            <a class="card-link btn btn-primary" target="_blank" rel="noopener noreferrer" :href="info.sourceCodeLink" >Source code</a>
+                            <a class="card-link btn btn-primary" target="_blank" rel="noopener noreferrer" href="@info.gameLink">Link to game</a>
+                            <a class="card-link btn btn-primary" target="_blank" rel="noopener noreferrer" href="@info.sourceCodeLink">Source code</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-  </div>
+        }
+    </div>
+</div>
