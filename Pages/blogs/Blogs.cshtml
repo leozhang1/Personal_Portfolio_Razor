@@ -9,13 +9,13 @@
 </div>
 <hr/>
 <div class="text-center">
-    <a class="btn btn-primary" asp-route-sortOrder="@Model.blogSort">@Model.blogSort</a>
+    <a class="btn btn-primary" asp-route-sortOrder="@Model.blogSort">Sort by @Model.blogSort</a>
 </div>
 @foreach (var b in Model.blogs)
 {
     <div class="card mx-auto mt-3 w-75">
         <div class="card-body">
-            <a asp-page=@b.routeName class="card-link">
+            <a asp-page="/details/BlogDetails" asp-route-routeName="@b.routeName" class="card-link">
                 @b.title
             </a>
             <h5 class="card-title">@b.date.ToString("MM-dd-yyyy")</h5>

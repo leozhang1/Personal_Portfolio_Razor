@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Personal_Portfolio_Razor.Models;
 
-// dotnet new page --name Model --namespace Personal_Portfolio_Razor.Pages --output Pages/
+
 
 namespace Personal_Portfolio_Razor.Pages;
 

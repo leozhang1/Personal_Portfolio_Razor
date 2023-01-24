@@ -9,7 +9,6 @@ namespace Personal_Portfolio_Razor.Pages
     {
         [BindProperty(SupportsGet=true)]
         public string blogSort { get; set; }
-
         private readonly IBlogsDataRepository<BlogModel> dataRepository;
         public IEnumerable<BlogModel> blogs;
 
@@ -22,15 +21,7 @@ namespace Personal_Portfolio_Razor.Pages
         {
             blogSort = sortOrder == "Newest" ? "Oldest" : "Newest";
 
-            switch (sortOrder)
-            {
-                case "Newest":
-                    blogs = dataRepository.Sort(true);
-                    break;
-                default:
-                    blogs = dataRepository.Sort(false);
-                    break;
-            }
+            blogs = dataRepository.Sort(blogSort == "Newest");
 
             await Task.Delay(1);
         }
