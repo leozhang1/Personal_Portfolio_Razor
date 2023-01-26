@@ -14,6 +14,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddSingleton<ISkillsDataRepository<string>, SkillsDataRepository>();
 builder.Services.AddSingleton<IProjectsDataRepository<ProjectCardModel>, ProjectsDataRepository>();
 builder.Services.AddSingleton<IBlogsDataRepository<BlogModel>, BlogsDataRepository>();
+builder.Services.AddSingleton<IContactsDataRepository<ContactMeModel>, ContactsDataRepository>();
+
 
 builder.Services.AddDbContext<ApplicationDbContext>(
     options => options.UseSqlServer(
