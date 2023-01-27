@@ -11,7 +11,12 @@ public class ApplicationDbContext : DbContext
 
     }
 
-    public DbSet<ContactMeModel> ContactDb { get; set; }
+    // increment the id of the model
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.UseSerialColumns();
+    }
 
+    public DbSet<ContactMeModel> ContactDb { get; set; }
 
 }

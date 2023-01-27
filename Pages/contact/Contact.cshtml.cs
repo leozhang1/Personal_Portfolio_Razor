@@ -10,6 +10,9 @@ public class ContactModel : PageModel
     [BindProperty]
     public ContactMeModel? contactMeModel {get; set;}
 
+    [TempData]
+    public string postedMessage { get; set; }
+
     private readonly IContactsDataRepository<ContactMeModel> dataRepository;
 
     public ContactModel(IContactsDataRepository<ContactMeModel> dataRepository)
@@ -26,17 +29,21 @@ public class ContactModel : PageModel
         }
     }
 
-    public IActionResult OnPost()
+    public async Task<IActionResult> OnPost()
     {
         if (!ModelState.IsValid)
         {
-            return RedirectToPage("/Errors/ContactPostError");
+            // return RedirectToPage("/Errors/ContactPostError");
+            // return RedirectToPage("/contact/Contact");
+            return Page();
         }
 
-        dataRepository.PostData(contactMeModel!);
+        // dataRepository.PostData(contactMeModel!);
+        TempData["postedMessage"] = "Thank you, your message has been sent!";
 
+        await Task.Delay(500);
         // logContacts();
 
-        return RedirectToPage("/Index");
+        return RedirectToPage("/contact/Contact");
     }
 }

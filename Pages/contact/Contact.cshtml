@@ -16,6 +16,12 @@
     I am excited to meet and work with you! We progress better together so please don't hesitate to contact me using the form below.
     </p>
 </div>
+
+@if (Model.postedMessage is not null)
+{
+    <div class="alert alert-info">@Model.postedMessage</div>
+}
+
 <form method="POST">
     <div class="row mb-3 w-75 mx-auto">
         <div class="col-6">
@@ -25,13 +31,13 @@
         </div>
         <div class="col-6">
             <label for="input2" class="form-label">Email</label>
-                <input type="email" class="form-control" id="input2" aria-describedby="emailHelp" asp-for="contactMeModel.email" placeholder="Email">
-                <span asp-validation-for="contactMeModel.email" class="text-danger"></span>
+            <input type="email" class="form-control" id="input2" aria-describedby="emailHelp" asp-for="contactMeModel.email" placeholder="Email">
+            <span asp-validation-for="contactMeModel.email" class="text-danger"></span>
 
                 <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
         </div>
     </div>
-    <div class="mb-3 w-75 mx-auto">
+    <div class="form-outline mb-3 w-75 mx-auto">
         <label for="input3" class="form-label">Subject</label>
         <input type="text" class="form-control" id="input3" asp-for="contactMeModel.subject" placeholder="Subject">
         <span asp-validation-for="contactMeModel.subject" class="text-danger"></span>
@@ -46,6 +52,11 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </form>
+
+@* allow for client-side validation *@
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
 
 
 

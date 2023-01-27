@@ -14,15 +14,32 @@ builder.Services.AddRazorPages();
 builder.Services.AddSingleton<ISkillsDataRepository<string>, SkillsDataRepository>();
 builder.Services.AddSingleton<IProjectsDataRepository<ProjectCardModel>, ProjectsDataRepository>();
 builder.Services.AddSingleton<IBlogsDataRepository<BlogModel>, BlogsDataRepository>();
-builder.Services.AddSingleton<IContactsDataRepository<ContactMeModel>, ContactsDataRepository>();
 
+// same instance for a single http request, but a new one for a different http request
+builder.Services.AddScoped<IContactsDataRepository<ContactMeModel>, SqlContactsDataRepository>();
 
-builder.Services.AddDbContext<ApplicationDbContext>(
-    options => options.UseSqlServer(
-        builder.Configuration.GetConnectionString("sqlServerString")
-    )
+builder.Services.AddDbContextPool<ApplicationDbContext>(
+    options => {
+        // options.UseSqlServer(
+        //         builder.Configuration.GetConnectionString("localDB")
+        //     );
+
+        // ElephantSQL formatting
+        var uriString = builder.Configuration.GetConnectionString("postgresDB")!;
+        var uri = new Uri(uriString);
+        var db = uri.AbsolutePath.Trim('/');
+        var user = uri.UserInfo.Split(':')[0];
+        var passwd = uri.UserInfo.Split(':')[1];
+        var port = uri.Port > 0 ? uri.Port : 5432;
+        var connStr = string.Format("Server={0};Database={1};User Id={2};Password={3};Port={4}",
+            uri.Host, db, user, passwd, port);
+
+        options.UseNpgsql(
+                connStr
+        );
+
+    }
 );
-
 
 
 var app = builder.Build();

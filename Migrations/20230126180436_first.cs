@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace PersonalPortfolioRazor.Migrations
 {
     /// <inheritdoc />
-    public partial class AddContactToDb : Migration
+    public partial class first : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,12 +15,12 @@ namespace PersonalPortfolioRazor.Migrations
                 name: "ContactDb",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    subject = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    message = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    name = table.Column<string>(type: "character varying(32)", maxLength: 32, nullable: false),
+                    email = table.Column<string>(type: "character varying(32)", maxLength: 32, nullable: false),
+                    subject = table.Column<string>(type: "character varying(32)", maxLength: 32, nullable: false),
+                    message = table.Column<string>(type: "character varying(2048)", maxLength: 2048, nullable: false)
                 },
                 constraints: table =>
                 {

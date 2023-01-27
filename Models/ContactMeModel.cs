@@ -1,11 +1,10 @@
-
-
 using System.ComponentModel.DataAnnotations;
 
 namespace Personal_Portfolio_Razor.Models;
 
 public class ContactMeModel
 {
+    [Key]
     public int Id {get; set;}
 
     [Required, StringLength(32)]
