@@ -1,0 +1,14 @@
+@using Personal_Portfolio_Razor.Models
+@model BlogModel
+
+<div class="card mx-auto mt-3 w-75">
+    <div class="card-body">
+
+        <a asp-page="./details/BlogDetails" asp-route-routeName="@Model.routeName" class="card-link">
+            @Model.title
+        </a>
+
+        <h5 class="card-title">@Model.date.ToString("MM-dd-yyyy")</h5>
+        <p class="card-text">@Model.previewDesc</p>
+    </div>
+</div>

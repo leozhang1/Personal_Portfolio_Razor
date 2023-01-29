@@ -11,15 +11,7 @@
 <div class="text-center">
     <a class="btn btn-primary" asp-route-sortOrder="@Model.blogSort">Sort by @Model.blogSort</a>
 </div>
-@foreach (var b in Model.blogs)
+@foreach (var blog in Model.blogs)
 {
-    <div class="card mx-auto mt-3 w-75">
-        <div class="card-body">
-            <a asp-page="/details/BlogDetails" asp-route-routeName="@b.routeName" class="card-link">
-                @b.title
-            </a>
-            <h5 class="card-title">@b.date.ToString("MM-dd-yyyy")</h5>
-            <p class="card-text">@b.previewDesc</p>
-        </div>
-    </div>
+    <partial name="_BlogCardPartialView" model="@blog" />
 }

@@ -2,10 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Personal_Portfolio_Razor.Data;
 using Personal_Portfolio_Razor.Models;
 using Personal_Portfolio_Razor.Services;
-// dotnet tool install --global dotnet-ef
 
-// creating a new razor page with a page model via the command line
-// dotnet new page --name Model --namespace Personal_Portfolio_Razor.Pages --output Pages/Model
 
 var builder = WebApplication.CreateBuilder(args);
 

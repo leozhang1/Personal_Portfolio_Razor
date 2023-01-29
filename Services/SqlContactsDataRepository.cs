@@ -8,9 +8,12 @@ namespace Personal_Portfolio_Razor.Services;
 public class SqlContactsDataRepository : IContactsDataRepository<ContactMeModel>
 {
     private readonly ApplicationDbContext db;
-    public SqlContactsDataRepository(ApplicationDbContext db)
+    private readonly ILogger<SqlContactsDataRepository> logger;
+
+    public SqlContactsDataRepository(ApplicationDbContext db, ILogger<SqlContactsDataRepository> logger)
     {
         this.db = db;
+        this.logger = logger;
     }
 
     public int Commit()
@@ -21,10 +24,13 @@ public class SqlContactsDataRepository : IContactsDataRepository<ContactMeModel>
     public ContactMeModel? Delete(int id)
     {
         var model = GetById(id);
-        if (model is not null)
+        if (model is null)
         {
-            db.ContactDb.Remove(model);
+            logger.LogInformation("Deletion failed :(. Couldn't find model.");
+            return model;
         }
+
+        db.ContactDb.Remove(model);
 
         Commit();
 
